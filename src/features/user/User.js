@@ -29,6 +29,7 @@ const User = () => {
             <div className='row my-3'>
                 <h2>User List</h2>
                 <button ref={modelRef} className="btn btn-primary" onClick={handleOnClickEvent}>Add User</button>
+                {users.length === 0 && 'No Record Found.'}
                 {users.map((user) => {
                     return <UserItem user={user} key={user._id} showCurrentUserForEdit={showCurrentUserForEdit} dispatch={dispatch} deleteUser={deleteUser} />
                 })}

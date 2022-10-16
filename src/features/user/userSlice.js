@@ -24,7 +24,7 @@ export const addUserAsync = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const url = `${host}/api/auth/createuser`;
-      const body = JSON.stringify({ name: user.user.name, email: user.user.email, password: user.user.password })
+      const body = { name: user.user.name, email: user.user.email, password: user.user.password }
       const response = await fetchAPI(url, 'POST', authtoken, body);
       const json = await response.json()
       if (response.status !== 200) {
@@ -43,7 +43,7 @@ export const updateUserAsync = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const url = `${host}/api/auth/updateuser/${user.user.id}`;
-      const body = JSON.stringify({ name: user.user.name, email: user.user.email })
+      const body = { name: user.user.name, email: user.user.email }
       const response = await fetchAPI(url, 'PUT', authtoken, body);
       const json = await response.json()
       if (response.status !== 200) {

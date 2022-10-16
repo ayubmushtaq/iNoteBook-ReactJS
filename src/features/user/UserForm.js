@@ -29,7 +29,7 @@ const UserForm = (props) => {
                             <form>
                                 <div className="mb-3">
                                     <label className="form-label" htmlFor='name'>Name</label>
-                                    <input type="text" className="form-control" id="name" name='name' value={user.name} onChange={handleTextChange} />
+                                    <input type="text" className="form-control" id="name" name='name' value={user.name} onChange={handleTextChange} minLength={3} />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label" htmlFor='email'>Email</label>
@@ -37,13 +37,13 @@ const UserForm = (props) => {
                                 </div>
                                 <div className="mb-3" hidden={user.isUpdate}>
                                     <label className="form-label" htmlFor='password'>Password</label>
-                                    <input type="password" className="form-control" id="password" name='password' value={user.password} onChange={handleTextChange} />
+                                    <input type="password" className="form-control" id="password" name='password' value={user.password} onChange={handleTextChange} minLength={5} />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleSubmit}>{user.isUpdate ? 'Update User' : 'Add User'}</button>
+                            <button type="button" className="btn btn-primary" onClick={handleSubmit} disabled={user.name.length < 3 || (!user.isUpdate && user.password.length < 5)}>{user.isUpdate ? 'Update User' : 'Add User'}</button>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,8 @@ import Navbar from '../components/Navbar';
 import RoleState from '../context/Role/RoleState';
 import { Alert } from '../components/Alert';
 import User from '../features/user/User';
+import Login from '../features/login/Login';
+import Signup from '../features/signup/Signup';
 //import ErrorPage from './components/ErrorPage';
 
 function App() {
@@ -86,6 +88,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="user" element={<User />} />
               <Route path="about" element={<About />} />
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
             </Routes>
           </div>
         </BrowserRouter>

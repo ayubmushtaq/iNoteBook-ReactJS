@@ -5,7 +5,7 @@ const fetchAPI = async (url, method, authtoken, body) => {
             'Content-Type': 'application/json',
             "auth-token": authtoken
         },
-        body: body
+        body: JSON.stringify(body)
     })
     return response;
 }
