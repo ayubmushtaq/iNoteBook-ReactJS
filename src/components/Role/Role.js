@@ -9,7 +9,9 @@ const Role = () => {
     const roleInitial = { "rolename": "", "roledescription": "","isUpdate":false }
     const [role, setRole] = useState(roleInitial);
     useEffect(() => {
-        getAllRoles()
+        if (localStorage.getItem('authToken')){
+            getAllRoles()
+        }
         // eslint-disable-next-line
     }, []);
 
@@ -27,7 +29,7 @@ const Role = () => {
             <div className='row my-3'>
                 <h2>Role List</h2>
                 <button ref={modelRef} onClick={handleClick} className="btn btn-primary">Add Role</button>
-                {roles.map((role) => {
+                {roles.length > 0 && roles.map((role) => {
                     return <RoleItem key={role._id} role={role} updateRole={updateRole} />
                 })}
             </div>

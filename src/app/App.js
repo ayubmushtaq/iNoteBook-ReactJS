@@ -16,6 +16,7 @@ import Alert from '../common/alerts/Alert';
 import User from '../features/user/User';
 import Login from '../features/login/Login';
 import Signup from '../features/signup/Signup';
+import ErrorPage from './ErrorPage';
 //import ErrorPage from './components/ErrorPage';
 
 function App() {
@@ -96,11 +97,12 @@ function App() {
           <Alert alert={alert} />
           <div className='container'>
             <Routes>
-              <Route path="/" element={<Home showAlert={showAlert} />} />
+              <Route path="/" element={<Home showAlert={showAlert} />}/>
               <Route path="user" element={<User showAlert={showAlert} />} />
               <Route path="about" element={<About showAlert={showAlert} />} />
               <Route path="login" element={<Login showAlert={showAlert} />} />
               <Route path="signup" element={<Signup showAlert={showAlert} />} />
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </div>
         </BrowserRouter>

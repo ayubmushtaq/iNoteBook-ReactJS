@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Signup = (props) => {
     const navigate = useNavigate();
-    const [signUpFields, setSignUpFields] = useState({ name: "", email: "", password: "" });
+    const [signUpFields, setSignUpFields] = useState({ name: "", email: "", password: "", confirmPassword: "" });
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, email, password } = signUpFields;
@@ -12,8 +12,8 @@ const Signup = (props) => {
         const json = await response.json();
         console.log(json);
         if (response.status === 200) {
-            localStorage.setItem('authToken', json.authToken)
-            navigate('/');
+            props.showAlert('Account Created Successfully', 'success');
+            navigate('/login');
         }
         else {
             props.showAlert('Invalid credentials', 'danger');
@@ -36,6 +36,10 @@ const Signup = (props) => {
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password" value={signUpFields.password} onChange={updateSignUpFieldsInState} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                    <input type="password" className="form-control" id="confirmPassword" value={signUpFields.confirmPassword} onChange={updateSignUpFieldsInState} />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

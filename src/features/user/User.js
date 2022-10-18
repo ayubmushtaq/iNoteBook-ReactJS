@@ -4,14 +4,16 @@ import { getUserAsync, addUserAsync, updateUserAsync, deleteUser } from "./userS
 import UserForm from "./UserForm";
 import UserItem from "./UserItem";
 
-const User = () => {
+const User = (props) => {
     const dispatch = useDispatch();
     const modelRef = useRef(null);
     const users = useSelector((state) => state.user.userList);
     const userInitial = { "name": "", "email": "", "password": "", "isUpdate": false }
     const [user, setUser] = useState(userInitial);
     useEffect(() => {
-        dispatch(getUserAsync());
+        if (localStorage.getItem('authToken')){
+            dispatch(getUserAsync());
+        }
     }, [dispatch])
 
     const handleOnClickEvent = () => {
@@ -30,14 +32,14 @@ const User = () => {
                 <h2>User List</h2>
                 <button ref={modelRef} className="btn btn-primary" onClick={handleOnClickEvent}>Add User</button>
                 {users.length === 0 && 'No Record Found.'}
-                {users.map((user) => {
-                    return <UserItem user={user} key={user._id} showCurrentUserForEdit={showCurrentUserForEdit} dispatch={dispatch} deleteUser={deleteUser} />
+                {users.length > 0 && users.map((user) => {
+                    return <UserItem user={user} key={user._id} showCurrentUserForEdit={showCurrentUserForEdit} dispatch={dispatch} deleteUser={deleteUser} showAlert={props.showAlert} />
                 })}
             </div>
             <button ref={modelRef} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#userModal">
                 Launch demo modal
             </button>
-            <UserForm user={user} setUser={setUser} addUser={addUserAsync} updateUser={updateUserAsync} dispatch={dispatch} modelRef={modelRef} />
+            <UserForm user={user} setUser={setUser} addUser={addUserAsync} updateUser={updateUserAsync} dispatch={dispatch} modelRef={modelRef} showAlert={props.showAlert} />
         </>
     )
 }

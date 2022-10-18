@@ -7,8 +7,7 @@ const initialState = {
 }
 
 const host = 'http://localhost:8000'
-const authtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0NWEyNzhjYjQ3ODBlZDc1MWFlZTdkIn0sImlhdCI6MTY2NTUwODEwOX0._eA0C3D0FxYD-5Efge032pjlhnaDJjRWTuef3IerSbk';
-
+const authtoken = localStorage.getItem('authToken');
 export const getUserAsync = createAsyncThunk(
   'user/getUser',
   async () => {

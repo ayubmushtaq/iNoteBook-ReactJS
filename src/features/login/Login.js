@@ -13,6 +13,7 @@ const Login = (props) => {
         console.log(json);
         if (response.status === 200) {
             localStorage.setItem('authToken', json.authToken)
+            props.showAlert('Login Successfully', 'success');
             navigate('/');
         }
         else {

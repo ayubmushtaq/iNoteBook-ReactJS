@@ -2,14 +2,16 @@ import React from 'react'
 
 const UserForm = (props) => {
     //Manage Add and Update User Form
-    const { user, setUser, addUser, updateUser, dispatch, modelRef } = props;
+    const { user, setUser, addUser, updateUser, dispatch, modelRef,showAlert } = props;
     const handleSubmit = (e) => {
         e.preventDefault();
         if (user.isUpdate) {
             dispatch(updateUser({ user, modelRef }));
+            showAlert('User Updated Successfully', 'success');
         }
         else {
             dispatch(addUser({ user, modelRef }));
+            showAlert('User Added Successfully', 'success');
         }
 
     }
