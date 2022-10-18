@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import fetchAPI from "../../common/fetchAPI";
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
             navigate('/');
         }
         else {
-            alert('Invalid credentials')
+            props.showAlert('Invalid credentials', 'danger');
         }
     }
     const updateEmailInState = (e) => {

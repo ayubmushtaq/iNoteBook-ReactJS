@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import {
   // createBrowserRouter,
   //createRoutesFromElements,
@@ -12,13 +12,24 @@ import Home from '../components/Home';
 import About from '../components/About';
 import Navbar from '../components/Navbar';
 import RoleState from '../context/Role/RoleState';
-import { Alert } from '../components/Alert';
+import Alert from '../common/alerts/Alert';
 import User from '../features/user/User';
 import Login from '../features/login/Login';
 import Signup from '../features/signup/Signup';
 //import ErrorPage from './components/ErrorPage';
 
 function App() {
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  }
   // const router1 = createBrowserRouter(
   //   createRoutesFromElements(
   //     <Route path="/" element={<Navbar />}>
@@ -82,14 +93,14 @@ function App() {
       <RoleState>
         <BrowserRouter>
           <Navbar />
-          <Alert message={'This is sample alert.'} />
+          <Alert alert={alert} />
           <div className='container'>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="user" element={<User />} />
-              <Route path="about" element={<About />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
+              <Route path="/" element={<Home showAlert={showAlert} />} />
+              <Route path="user" element={<User showAlert={showAlert} />} />
+              <Route path="about" element={<About showAlert={showAlert} />} />
+              <Route path="login" element={<Login showAlert={showAlert} />} />
+              <Route path="signup" element={<Signup showAlert={showAlert} />} />
             </Routes>
           </div>
         </BrowserRouter>
