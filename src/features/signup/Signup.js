@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import fetchAPI from "../../common/fetchAPI";
 import { useNavigate } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
     const navigate = useNavigate();
     const [signUpFields, setSignUpFields] = useState({ name: "", email: "", password: "" });
     const handleSubmit = async (e) => {
@@ -16,7 +16,7 @@ const Signup = () => {
             navigate('/');
         }
         else {
-            alert('Invalid credentials')
+            props.showAlert('Invalid credentials', 'danger');
         }
     }
     const updateSignUpFieldsInState = (e) => {
