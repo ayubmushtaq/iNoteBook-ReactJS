@@ -10,7 +10,6 @@ const Login = (props) => {
         e.preventDefault();
         const response = await fetchAPI('http://localhost:8000/api/auth/userlogin', 'POST', '', { email, password });
         const json = await response.json();
-        console.log(json);
         if (response.status === 200) {
             localStorage.setItem('authToken', json.authToken)
             props.showAlert('Login Successfully', 'success');
